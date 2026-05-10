@@ -2,8 +2,8 @@
 CS 460 – Algorithms: Final Programming Assignment
 The Torchbearer
 
-Student Name: ___________________________
-Student ID:   ___________________________
+Student Name: ___________Adam Mohamed________________
+Student ID:   _________133870929__________________
 
 INSTRUCTIONS
 ------------
@@ -25,16 +25,8 @@ import heapq
 # =============================================================================
 
 def explain_problem():
-    """
-    Returns
-    -------
-    str
-        Your Part 1 README answers, written as a string.
-        Must match what you wrote in README Part 1.
-
-    TODO
-    """
-    return "TODO"
+    explination = "A single shorted path run from S is not enough because a part fo the requirement of the job is to collete a set of M relics from different locations. A single short path run from S tells us the shortest path from S to T that preserving fuel, but does not consider the information of what is the optimal order to reach each relic and reach T in the shortest path / preserving fuel. The decision that remains after all inter-location costs are known is which order should we take nodes to reach all M relic chambers then T to preserve the most fuel.This requires a search over orders because each permutation of relics creates a different path. Think of it as driving, to get to SDSU but you want to stop by a gas station, coffee, and breakfast, theres many roads and many routes that will reach all three but what should the order be. If the path to coffee -> breakfast -> gas -> school computes the shortest path then the GPS selects that because this permuation works the best."
+    return explination
 
 
 # =============================================================================
@@ -56,8 +48,15 @@ def select_sources(spawn, relics, exit_node):
 
     TODO
     """
+    sources = [spawn]
+    for v in relics:
+        # no duplicates
+        if v not in sources:
+            sources.append(v)
+        
+    # sources is now spawn and all relics since a relic is a important node
+    return sources
     pass
-
 
 def run_dijkstra(graph, source):
     """

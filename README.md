@@ -1,7 +1,7 @@
 # The Torchbearer
 
-**Student Name:** ___________________________
-**Student ID:** ___________________________
+**Student Name:** _________Adam Mohamed__________________
+**Student ID:** _________133870929__________________
 **Course:** CS 460 – Algorithms | Spring 2026
 
 > This README is your project documentation. Write it the way a developer would document
@@ -17,14 +17,13 @@
 > per question. Each bullet should be 1-2 sentences max.
 
 - **Why a single shortest-path run from S is not enough:**
-  _Your answer here._
+  _A single shorted path run from S is not enough because a part fo the requirement of the job is to collete a set of M relics from different locations. A single short path run from S tells us the shortest path from S to T that preserving fuel, but does not consider the information of what is the optimal order to reach each relic and reach T in the shortest path / preserving fuel. _
 
 - **What decision remains after all inter-location costs are known:**
-  _Your answer here._
+  _The decision that remains after all inter-location costs are known is which order should we take nodes to reach all M relic chambers then T to preserve the most fuel._
 
 - **Why this requires a search over orders (one sentence):**
-  _Your answer here._
-
+  _This requires a search over orders because each permutation of relics creates a different path. Think of it as driving, to get to SDSU but you want to stop by a gas station, coffee, and breakfast, theres many roads and many routes that will reach all three but what should the order be. If the path to coffee -> breakfast -> gas -> school computes the shortest path then the GPS selects that because this permuation works the best._
 ---
 
 ## Part 2: Precomputation Design
@@ -35,8 +34,8 @@
 
 | Source Node Type | Why it is a source |
 |---|---|
-| _node type_ | _one-line reason_ |
-| _node type_ | _one-line reason_ |
+| _Entrance to the dungeon_ | _Basic starting point to create the path from entrance to relics to T_ |
+| _Dungeon/Relic chamber_ | _A dunegon, but specifically the relic chamber variation, is a source node because from a single dungeon you must know the correct path to take to the next relic chamber in order to reach t._ |
 
 ### Part 2b: Distance Storage
 
@@ -44,11 +43,11 @@
 
 | Property | Your answer |
 |---|---|
-| Data structure name | |
-| What the keys represent | |
-| What the values represent | |
-| Lookup time complexity | |
-| Why O(1) lookup is possible | |
+| Data structure name | Array/List |
+| What the keys represent | Dungeon/Node |
+| What the values represent | Shortest Path To Node |
+| Lookup time complexity | O(1) |
+| Why O(1) lookup is possible | Dist[node] = The dist since the value is found immediatly |
 
 ### Part 2c: Precomputation Complexity
 
