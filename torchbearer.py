@@ -77,9 +77,9 @@ def run_dijkstra(graph, source):
         amount, prev = heapq.heappop(minHeap)
         if amount > value[prev]:
             continue
-        for n, i in graph[prev]:
-            if value[n] > value[prev] + i:
-                value[n] = value[prev] + i
+        for neighbor, edge in graph[prev]:
+            if value[neighbor] > value[prev] + edge:
+                value[neighbor] = value[prev] + edge
                 heapq.heappush(minHeap, (value[n], n))
     return value
     pass
@@ -123,16 +123,8 @@ def precompute_distances(graph, spawn, relics, exit_node):
 # =============================================================================
 
 def dijkstra_invariant_check():
-    """
-    Returns
-    -------
-    str
-        Your Part 3 README answers, written as a string.
-        Must match what you wrote in README Part 3.
-
-    TODO
-    """
-    return "TODO"
+    explaination = "* The invariant holds before iteration one because every node is not yet finalized thus no node is known to be the shortest path for its addition to S, only source with edge 0 and all nodes = infinity is the current state. * Finalizing the min-dist node is always correct because this means the node popped has the smallest known edge weight total from source yet,  meaning that from this point forward that node can no longer get worse from what it was finalized at. * The invariant guarantees the set of all finalized nodes is a solution for the shortest path from a source to all nodes in a graph, and anything not reachable stayed infinity from initialization. * This is imporant for route planner because you need to know the optimal/ shortets fuel path from all k source nodes needed to be able to collect every relic and exit the chamber before entering"
+    return explaination
 
 
 # =============================================================================

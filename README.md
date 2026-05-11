@@ -71,29 +71,29 @@
 > Do not copy the invariant text from the spec.
 
 - **For nodes already finalized (in S):**
-  _Your answer here._
+  _For nodes already finalized in s, its distance is already the optimal path as its proof of being in  S_
 
 - **For nodes not yet finalized (not in S):**
-  _Your answer here._
+  _For nodes not yet finalized, its final optimal distance is not yet known so more information is needed before a conclusion is reached for is final path._
 
 ### Part 3b: Why Each Phase Holds
 
 > One to two bullets per phase. Maintenance must mention nonnegative edge weights.
 
 - **Initialization : why the invariant holds before iteration 1:**
-  _Your answer here._
+  _The invariant holds before iteration one because every node is not yet finalized thus no node is known to be the shortest path for its addition to S, only source with edge 0 and all nodes = infinity is the current state._
 
 - **Maintenance : why finalizing the min-dist node is always correct:**
-  _Your answer here._
+  _Finalizing the min-dist node is always correct because this means the node popped has the smallest known edge weight total from source yet,  meaning that from this point forward that node can no longer get worse from what it was finalized at._
 
 - **Termination : what the invariant guarantees when the algorithm ends:**
-  _Your answer here._
+  _The invariant guarantees the set of all finalized nodes is a solution for the shortest path from a source to all nodes in a graph, and anything not reachable stayed infinity from initialization._
 
 ### Part 3c: Why This Matters for the Route Planner
 
 > One sentence connecting correct distances to correct routing decisions.
 
-_Your answer here._
+_This is imporant for route planner because you need to know the optimal/ shortets fuel path from all k source nodes needed to be able to collect every relic and exit the chamber before entering._
 
 ---
 
