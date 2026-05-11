@@ -34,20 +34,6 @@ def explain_problem():
 # =============================================================================
 
 def select_sources(spawn, relics, exit_node):
-    """
-    Parameters
-    ----------
-    spawn : node
-    relics : list[node]
-    exit_node : node
-
-    Returns
-    -------
-    list[node]
-        No duplicates. Order does not matter.
-
-    TODO
-    """
     sources = [spawn]
     for v in relics:
         # no duplicates
@@ -55,6 +41,7 @@ def select_sources(spawn, relics, exit_node):
             sources.append(v)
         
     # sources is now spawn and all relics since a relic is a important node
+    # exit node doesnt seem useable since we should end there? so its not exactly a source
     return sources
     pass
 
@@ -74,6 +61,27 @@ def run_dijkstra(graph, source):
 
     TODO
     """
+    # dict instead of list since the keys are strings that map to values in tests
+   
+    value = {}
+    # loop through the graph key:val then loop the val list to get every possible neigbor and set to inf
+    for node, l in graph.items():
+        value[node] = float("inf")
+        for n, i in l:
+            if n not in value:
+                value[n] = float("inf")
+                
+    value[source] = 0
+    minHeap = [(0, source)]
+    while minHeap:
+        amount, prev = heapq.heappop(minHeap)
+        if amount > value[prev]:
+            continue
+        for n, i in graph[prev]:
+            if value[n] > value[prev] + i:
+                value[n] = value[prev] + i
+                heapq.heappush(minHeap, (value[n], n))
+    return value
     pass
 
 
@@ -94,6 +102,19 @@ def precompute_distances(graph, spawn, relics, exit_node):
 
     TODO
     """
+    # essentially used to call dijkstra spawn + relic times.
+    answer = {}
+    # o(n)
+    sources = select_sources(spawn, relics, exit_node)
+    # o(k) for k = source node count (entrance + relic chambers)
+    for i in range(len(sources)):
+        node = sources[i]
+        # o(k * (m log n))
+        answer[node] = run_dijkstra(graph, node)
+        
+    # answer is now the node : nested structure
+    return answer
+        
     pass
 
 

@@ -43,7 +43,7 @@
 
 | Property | Your answer |
 |---|---|
-| Data structure name | Array/List |
+| Data structure name | Dictionary |
 | What the keys represent | Dungeon/Node |
 | What the values represent | Shortest Path To Node |
 | Lookup time complexity | O(1) |
@@ -53,10 +53,10 @@
 
 > State the total complexity and show the arithmetic. Two to three lines max.
 
-- **Number of Dijkstra runs:** _your answer_
-- **Cost per run:** _your answer_
-- **Total complexity:** _your answer_
-- **Justification (one line):** _your answer_
+- **Number of Dijkstra runs:** _Entrance + amount of relic chambers needed_
+- **Cost per run:** _A single run of dijkstra is O(m log n)_
+- **Total complexity:** _O(k * m log n)_
+- **Justification (one line):** _K = entrance + amount of relic chambers needed, then in the same loop we do m log n for dijkstra which is O( k * m log n)_
 
 ---
 

@@ -19,12 +19,12 @@ _After reading the instructions and requirenments, the things I do plan to imple
 
 ---
 
-## Entry 2 – [Date]: [Short description]
+## Entry 2 – [Date]: May 11th: 2026 [Short description]
 
 > Required. At least one entry must describe a bug, wrong assumption, or design change
 > you encountered. Describe what went wrong and how you resolved it.
 
-_Your entry here._
+_On this day after finishing part two, i realized i was solving the question as if it was setup to where an array is all we needed to map the nodes, since im used to seeing graph nodes set up in a way where we can doo arr[node] for any value and it'll show the optimal path for that ndoe at that index. I resolved once I realized the keys are able to be strings and I looked more at the bottom screen test cases and it helped solve the trifecta of source_nodes -> dijkstra -> precompute distances. One other issue I ran into was python issues and forgetting iterating a map doesn't actually release key,value pairs like a [node,(v,u)] would do in a normal iteration._
 
 ---
 
@@ -49,8 +49,8 @@ _Your entry here._
 
 | Part | Estimated Hours |
 |---|---|
-| Part 1: Problem Analysis | |
-| Part 2: Precomputation Design | |
+| Part 1: Problem Analysis | 30m |
+| Part 2: Precomputation Design | ~ 1hr 40m |
 | Part 3: Algorithm Correctness | |
 | Part 4: Search Design | |
 | Part 5: State and Search Space | |
