@@ -52,7 +52,7 @@ _Your entry here._
 | Part 1: Problem Analysis | 30m |
 | Part 2: Precomputation Design | ~ 1hr 40m |
 | Part 3: Algorithm Correctness | ~ 33m |
-| Part 4: Search Design | |
+| Part 4: Search Design | ~ 40 |
 | Part 5: State and Search Space | |
 | Part 6: Pruning | |
 | Part 7: Implementation | |

@@ -104,17 +104,17 @@ _This is imporant for route planner because you need to know the optimal/ shorte
 > State the failure mode. Then give a concrete counter-example using specific node names
 > or costs (you may use the illustration example from the spec). Three to five bullets.
 
-- **The failure mode:** _Your answer here._
-- **Counter-example setup:** _Your answer here._
-- **What greedy picks:** _Your answer here._
-- **What optimal picks:** _Your answer here._
-- **Why greedy loses:** _Your answer here._
+- **The failure mode:** _Greedy algorithm relies on hoping/selecting the local optimal choice to lead to the global optimal answer. It would not work her ebecause if we used a greedy algorithm, the selection of a relic path after x edges (counting path) could ruin the path in the later run as we would never have checked different edge weights branches. Greedy finds the minimum path its locked too, but not the actual minimum answer._
+- **Counter-example setup:** _A great setup is in the assignment description since the values are already listed ( one edge change was made): S, relics: BCD, exit: T. Values are s->b 1, s->c & s->d = 2, b->c = 100, b->d = 1, b->t = 1, c->b = 1, c -> d = 100, c -> t = 100, d-> b = 1, d-> c = 1, d->t = 100. BUT THE ONE DIFFERENCE IS c->t = 100 over 1._
+- **What greedy picks:** _Greedy would start at S, and select B as the connection. Then from B, It would choose the next optimal which is D, then from D -> C, straying from a recheck since B was traversed already, and C -> T for a cost of 100 is the only choice to not allow a recheck of a already checked relic chamber. Thus a path of 103 cost was formed._
+- **What optimal picks:** _Optimal would choose S -> D -> C -> B -> T which is a much lwoer cost in this example (remember the difference from the test case was adding C->T = 100 for the greedy trap)._
+- **Why greedy loses:** _Greedy loses horribly because of the intial trap of the minimum edge at step one led to taking a edge of 100 to finish the expedition._
 
 ### What the Algorithm Must Explore
 
 > One bullet. Must use the word "order."
 
-- _Your answer here._
+- _The algorithm must produce a valid path that creates the minimum torch fuel used, meaning we need a specific permutation or order of relics (there may be the same optimal one) that create the path from S -> T._
 
 ---
 

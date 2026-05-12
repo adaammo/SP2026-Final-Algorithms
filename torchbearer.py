@@ -25,7 +25,12 @@ import heapq
 # =============================================================================
 
 def explain_problem():
-    explination = "A single shorted path run from S is not enough because a part fo the requirement of the job is to collete a set of M relics from different locations. A single short path run from S tells us the shortest path from S to T that preserving fuel, but does not consider the information of what is the optimal order to reach each relic and reach T in the shortest path / preserving fuel. The decision that remains after all inter-location costs are known is which order should we take nodes to reach all M relic chambers then T to preserve the most fuel.This requires a search over orders because each permutation of relics creates a different path. Think of it as driving, to get to SDSU but you want to stop by a gas station, coffee, and breakfast, theres many roads and many routes that will reach all three but what should the order be. If the path to coffee -> breakfast -> gas -> school computes the shortest path then the GPS selects that because this permuation works the best."
+    explination = """
+    A single shortest path run from S is not enough because a part of the requirement of the job is to collete a set of M relics from different locations. A single short path run from S tells us the shortest path from S to T that preserving fuel, but does not consider the information of what is the optimal order to reach each relic and reach T in the shortest path / preserving fuel.
+
+    The decision that remains after all inter-location costs are known is which order should we take nodes to reach all M relic chambers then T to preserve the most fuel.
+    
+    This requires a search over orders because each permutation of relics creates a different path. Think of it as driving, to get to SDSU but you want to stop by a gas station, coffee, and breakfast, theres many roads and many routes that will reach all three but what should the order be. If the path to coffee -> breakfast -> gas -> school computes the shortest path then the GPS selects that because this permuation works the best."""
     return explination
 
 
@@ -123,7 +128,14 @@ def precompute_distances(graph, spawn, relics, exit_node):
 # =============================================================================
 
 def dijkstra_invariant_check():
-    explaination = "* The invariant holds before iteration one because every node is not yet finalized thus no node is known to be the shortest path for its addition to S, only source with edge 0 and all nodes = infinity is the current state. * Finalizing the min-dist node is always correct because this means the node popped has the smallest known edge weight total from source yet,  meaning that from this point forward that node can no longer get worse from what it was finalized at. * The invariant guarantees the set of all finalized nodes is a solution for the shortest path from a source to all nodes in a graph, and anything not reachable stayed infinity from initialization. * This is imporant for route planner because you need to know the optimal/ shortets fuel path from all k source nodes needed to be able to collect every relic and exit the chamber before entering"
+    explaination = """ 
+    * The invariant holds before iteration one because every node is not yet finalized thus no node is known to be the shortest path for its addition to S, only source with edge 0 and all nodes = infinity is the current state.
+    
+    * Finalizing the min-dist node is always correct because this means the node popped has the smallest known edge weight total from source yet,  meaning that from this point forward that node can no longer get worse from what it was finalized at. 
+    
+    * The invariant guarantees the set of all finalized nodes is a solution for the shortest path from a source to all nodes in a graph, and anything not reachable stayed infinity from initialization. 
+    
+    * This is imporant for route planner because you need to know the optimal/ shortets fuel path from all k source nodes needed to be able to collect every relic and exit the chamber before entering """
     return explaination
 
 
@@ -138,10 +150,21 @@ def explain_search():
     str
         Your Part 4 README answers, written as a string.
         Must match what you wrote in README Part 4.
-
-    TODO
     """
-    return "TODO"
+    
+    explination = """
+    * Greedy algorithm relies on hoping/selecting the local optimal choice to lead to the global optimal answer. It would not work her ebecause if we used a greedy algorithm, the selection of a relic path after x edges (counting path) could ruin the path in the later run as we would never have checked different edge weights branches. Greedy finds the minimum path its locked too, but not the actual minimum answer.  
+     
+    * A great setup is in the assignment description since the values are already listed ( one edge change was made): S, relics: BCD, exit: T. Values are s->b 1, s->c & s->d = 2, b->c = 100, b->d = 1, b->t = 1, c->b = 1, c -> d = 100, c -> t = 100, d-> b = 1, d-> c = 1, d->t = 100. BUT THE ONE DIFFERENCE IS c->t = 100 over 1.  
+    
+    * Greedy would start at S, and select B as the connection. Then from B, It would choose the next optimal which is D, then from D -> C, straying from a recheck since B was traversed already, and C -> T for a cost of 100 is the only choice to not allow a recheck of a already checked relic chamber. Thus a path of 103 cost was formed. 
+    
+    * Optimal would choose S -> D -> C -> B -> T which is a much lwoer cost in this example (remember the difference from the test case was adding C->T = 100 for the greedy trap).
+    
+    * Greedy loses by a giant margin because of the intial trap of the minimum edge at step one led to taking a edge of 100 to finish the expedition."""
+    
+    explore = " * The algorithm must produce a valid path that creates the minimum torch fuel used, meaning we need a specific permutation or order of relics (there may be the same optimal one) that create the path from S -> T."
+    return explination + explore
 
 
 # =============================================================================
