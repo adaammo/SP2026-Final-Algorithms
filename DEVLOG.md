@@ -3,26 +3,16 @@
 **Student Name:** __________Adam Mohamed_________________
 **Student ID:** ___________133870929________________
 
-> Instructions: Write at least four dated entries. Required entry types are marked below.
-> Two to five sentences per entry is sufficient. Write entries as you go, not all in one
-> sitting. Graders check that entries reflect genuine work across multiple sessions.
-> Delete all blockquotes before submitting.
-
 ---
 
 ## Entry 1 – [Date]: May 9th, 2026 - Initial Plan
 
-> Required. Write this before writing any code. Describe your plan: what you will
-> implement first, what parts you expect to be difficult, and how you plan to test.
 
 _After reading the instructions and requirenments, the things I do plan to implement first would be doing the functions in order but trying to finish Dijkstra and find optimal route, as Dijkstra's is meant to help with computing the shortest between any S and T, and for find optimal route I plan to tackle this ASAP as this one will definitly be a bit more convuluted and need more time debugging and fixing wrong assumptions. I plan to test with a lot of print statement and leverging the temp test information.  _
 
 ---
 
 ## Entry 2 – [Date]: May 11th: 2026 [Short description]
-
-> Required. At least one entry must describe a bug, wrong assumption, or design change
-> you encountered. Describe what went wrong and how you resolved it.
 
 _On this day after finishing part two, i realized i was solving the question as if it was setup to where an array is all we needed to map the nodes, since im used to seeing graph nodes set up in a way where we can doo arr[node] for any value and it'll show the optimal path for that ndoe at that index. I resolved once I realized the keys are able to be strings and I looked more at the bottom screen test cases and it helped solve the trifecta of source_nodes -> dijkstra -> precompute distances. One other issue I ran into was python issues and forgetting iterating a map doesn't actually release key,value pairs like a [node,(v,u)] would do in a normal iteration._
 
@@ -36,16 +26,12 @@ _On this day, It was easily the most difficult and time consuming part of the im
 
 ## Entry 4 – [Date]: May 14th:  Post-Implementation Reflection
 
-> Required. Written after your implementation is complete. Describe what you would
-> change or improve given more time.
 
 _If I were to change anything it would probably be me wishing I could do this in another language. But on a more serious note, I do think I could've improved a bit on the logical thinking. It took me awhile before I got all test cases passed because I kept overlooking slight details. _
 
 ---
 
 ## Final Entry – [Date]: Time Estimate
-
-> Required. Estimate minutes spent per part. Honesty is expected; accuracy is not graded.
 
 | Part | Estimated Hours |
 |---|---|
