@@ -25,6 +25,16 @@ import heapq
 # =============================================================================
 
 def explain_problem():
+    """
+    Returns
+    -------
+    str
+        Your Part 1 README answers, written as a string.
+        Must match what you wrote in README Part 1.
+
+    TODO
+    """
+    
     explination = """
     A single shortest path run from S is not enough because a part of the requirement of the job is to collete a set of M relics from different locations. A single short path run from S tells us the shortest path from S to T that preserving fuel, but does not consider the information of what is the optimal order to reach each relic and reach T in the shortest path / preserving fuel.
 
@@ -39,6 +49,21 @@ def explain_problem():
 # =============================================================================
 
 def select_sources(spawn, relics, exit_node):
+    """
+    Parameters
+    ----------
+    spawn : node
+    relics : list[node]
+    exit_node : node
+
+    Returns
+    -------
+    list[node]
+        No duplicates. Order does not matter.
+
+    TODO
+    """
+    
     sources = [spawn]
     for v in relics:
         # no duplicates
@@ -85,7 +110,7 @@ def run_dijkstra(graph, source):
         for neighbor, edge in graph[prev]:
             if value[neighbor] > value[prev] + edge:
                 value[neighbor] = value[prev] + edge
-                heapq.heappush(minHeap, (value[n], n))
+                heapq.heappush(minHeap, (value[neighbor], neighbor))
     return value
     pass
 
@@ -128,6 +153,16 @@ def precompute_distances(graph, spawn, relics, exit_node):
 # =============================================================================
 
 def dijkstra_invariant_check():
+    """
+    Returns
+    -------
+    str
+        Your Part 3 README answers, written as a string.
+        Must match what you wrote in README Part 3.
+
+    TODO
+    """
+    
     explaination = """ 
     * The invariant holds before iteration one because every node is not yet finalized thus no node is known to be the shortest path for its addition to S, only source with edge 0 and all nodes = infinity is the current state.
     
@@ -191,7 +226,18 @@ def find_optimal_route(dist_table, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    current_location = spawn
+    relics_collected = []
+    fuel_cost = 0
+    answer = []
+    _explore(dist_table=dist_table, 
+             current_loc = current_location, 
+             relics_remaining = relics ,
+             relics_visited_order = relics_collected,
+             cost_so_far = fuel_cost, 
+             exit_node = exit_node,
+             best = answer)
+    return answer[0]
 
 
 def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
@@ -223,7 +269,46 @@ def _explore(dist_table, current_loc, relics_remaining, relics_visited_order,
     explaining why it is safe (cannot skip the optimal solution).
     This comment is graded.
     """
-    pass
+    # base case : if relic_reminaing is empty, we hit all
+    if not relics_remaining:
+        # since dist_table knowns the cost for [curr][exit], the cost updates from here
+        total = cost_so_far + dist_table[current_loc][exit_node]
+        path = relics_visited_order.copy()
+        if not best:
+            best.append((total, path))
+            return
+        prev_total, prev_order = best[0]
+        if total < prev_total:
+            best.pop()
+            best.append((total, path))
+        return
+    
+    for relic in relics_remaining:
+        cost_to_move = cost_so_far + dist_table[current_loc][relic]
+        # PRUNING
+        # This is safe and CANNOt skip the optimal solution because if the branch we visited is worse than the best known path,
+        # there is no reason to coninue it, thus continue ( skip ).
+        if best:
+            best_cost, best_path = best[0]
+            if(cost_to_move > best_cost):
+                continue
+        relics_visited_order.append(relic)
+        new_relics_remaining = []
+        # create the list without the relic
+        for i in relics_remaining:
+            if i != relic:
+                new_relics_remaining.append(i)
+            # recrusive case
+        _explore(dist_table = dist_table,
+                 current_loc=relic,
+                 relics_remaining=new_relics_remaining,
+                 relics_visited_order=relics_visited_order,
+                 cost_so_far=cost_to_move,
+                 exit_node=exit_node,
+                 best = best
+                 )
+        # backtrack
+        relics_visited_order.pop()
 
 
 # =============================================================================
@@ -247,7 +332,10 @@ def solve(graph, spawn, relics, exit_node):
 
     TODO
     """
-    pass
+    # simply built dist_table, then answer is the return for optimal path
+    dist_table = precompute_distances(graph, spawn, relics, exit_node)
+    answer = find_optimal_route(dist_table, spawn, relics, exit_node)
+    return answer
 
 
 # =============================================================================

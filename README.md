@@ -127,9 +127,9 @@ _This is imporant for route planner because you need to know the optimal/ shorte
 
 | Component | Variable name in code | Data type | Description |
 |---|---|---|---|
-| Current location | | | |
-| Relics already collected | | | |
-| Fuel cost so far | | | |
+| Current location | current_location | Node | The current chamber we are standing at |
+| Relics already collected | relics_collected | List | A list of the relics already collected so we can see whats left|
+| Fuel cost so far | fuel_cost | number | The cost of the fuel so far of a path.  |
 
 ### Part 5b: Data Structure for Visited Relics
 
@@ -137,19 +137,19 @@ _This is imporant for route planner because you need to know the optimal/ shorte
 
 | Property | Your answer |
 |---|---|
-| Data structure chosen | |
-| Operation: check if relic already collected | Time complexity: |
-| Operation: mark a relic as collected | Time complexity: |
-| Operation: unmark a relic (backtrack) | Time complexity: |
-| Why this structure fits | |
+| Data structure chosen | List |
+| Operation: check if relic already collected | Time complexity: O(k) (nodes in relics), I didn't use a set but rather built uncollected relics to recurse | 
+| Operation: mark a relic as collected | Time complexity: O(1), append. | 
+| Operation: unmark a relic (backtrack) | Time complexity: O(1), pop runs O(1) in py | 
+| Why this structure fits | Fits the function parameters and didn't need a seperate visited set|
 
 ### Part 5c: Worst-Case Search Space
 
 > Two bullets.
 
-- **Worst-case number of orders considered:** _Your answer (in terms of k)._
+- **Worst-case number of orders considered:** _O(K!)_
 - **Why:** _One-line justification._
-
+Since a permutation of a relic order is valid, worse case is we need to check every single permutation. Example: A permutation to rerange 1,2,3 is n! factorial, which is 3 * 2 * 1. 
 ---
 
 ## Part 6: Pruning
@@ -158,23 +158,24 @@ _This is imporant for route planner because you need to know the optimal/ shorte
 
 > Three bullets.
 
-- **What is tracked:** _Your answer here._
-- **When it is used:** _Your answer here._
-- **What it allows the algorithm to skip:** _Your answer here._
+- **What is tracked:** _Best_cost, cost_so_far._
+- **When it is used:** _We use it to prune if the current path is already worse then the valid one. curr_cost > best_cost._
+- **What it allows the algorithm to skip:** _It allows you to skip a whole backtracking branch._
 
 ### Part 6b: Lower Bound Estimation
 
 > Three bullets.
 
-- **What information is available at the current state:** _Your answer here._
-- **What the lower bound accounts for:** _Your answer here._
-- **Why it never overestimates:** _Your answer here._
+- **What information is available at the current state:** _Every parameter in _explore(params) is known in the current state_
+- **What the lower bound accounts for:** __
+- **Why it never overestimates:** __
 
 ### Part 6c: Pruning Correctness
 
 > One to two bullets. Explain why pruning is safe.
 
-- _Your answer here._
+- _Pruning is safe because it ensures the path we are on is not THE FIRST ONE and is not worse then the best known path so far. If
+it is then we can just continue and move onto another branch._
 
 ---
 
@@ -182,4 +183,4 @@ _This is imporant for route planner because you need to know the optimal/ shorte
 
 > Bullet list. If none beyond lecture notes, write that.
 
-- _Your references here._
+- _Lecture notes + a lot of leetcode practicing_
